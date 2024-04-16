@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import Image from 'next/image';
 import {
     Dialog,
@@ -16,7 +16,7 @@ interface MeetingModalProps {
     onClose: () => void
     title: string
     className?: string
-    children?: string
+    children?: ReactNode
     handleClick?: () => void
     buttonText?: string
     image?: string

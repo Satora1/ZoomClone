@@ -49,7 +49,7 @@ if(callingState!==CallingState.JOINED)return
           <CallParticipantsList onClose={() => setShowParticipants(false)} />
         </div>
       </div>
-      <div className='fixed bottom-0 flex w-full items-center justify-center gap-5'>
+      <div className='fixed bottom-0 flex w-full items-center justify-center gap-5 flex-wrap'>
 
         <CallControls />
         <DropdownMenu>
