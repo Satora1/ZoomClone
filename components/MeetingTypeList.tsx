@@ -9,6 +9,7 @@ import { Call, useStreamVideoClient } from '@stream-io/video-react-sdk'
 import { useToast } from './ui/use-toast'
 import { Textarea } from './ui/textarea'
 import ReactDatePicker from "react-datepicker"
+import { Input } from './ui/input'
 
 const MeetingTypeList = () => {
     const router = useRouter();
@@ -61,7 +62,7 @@ const MeetingTypeList = () => {
             })
         }
     }
-    const meetingLink=`${process.env.NEXT_PUBLICK_BASE_URL}/meeting/${callDetails?.id}`
+    const meetingLink=`${process.env.NEXT_PUBLIC_BASE_URL}/meeting/${callDetails?.id}`
     return (
         <section className='grid grid-cols-1 gap-5 md:grid-cols2 xl:grid-cols-4'>
             <HomeCard
@@ -82,7 +83,7 @@ const MeetingTypeList = () => {
                 img="/icons/recordings.svg"
                 title="View Recordings"
                 description="Check out your recordings"
-                handleClick={() => setMeetingState("isJoiningMeeting")}
+                handleClick={() => router.push('/recordings')}
                 className="bg-purple-1" />
             <HomeCard
                 img="/icons/join-meeting.svg"
@@ -144,7 +145,6 @@ const MeetingTypeList = () => {
                     />
                 )
             }
-            image
             <MeetingModal
                 isOpen={meetingState === "isInstantMeeting"}
                 onClose={() => setMeetingState(undefined)}
@@ -153,6 +153,21 @@ const MeetingTypeList = () => {
                 buttonText="Start Meeting"
                 handleClick={createMeeting}
             />
+
+              <MeetingModal
+                isOpen={meetingState === "isJoiningMeeting"}
+                onClose={() => setMeetingState(undefined)}
+                title="Type the link here"
+                className="text-center"
+                buttonText="Join Meeting"
+                handleClick={()=>router.push(values.link)}
+            >
+                <Input
+                placeholder='Meeting link'
+                className='border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0'
+                onChange={(e)=>setValues({...values,link:e.target.value})}
+                />
+            </MeetingModal>
         </section>
     )
 }
