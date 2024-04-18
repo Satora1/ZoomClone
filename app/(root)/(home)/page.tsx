@@ -24,5 +24,5 @@ const Home = () => {
     </section>
   )
 }
-
+//Do changes to icons
 export default Home
